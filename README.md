@@ -1,4 +1,4 @@
-# Multi-Domain Support Triage Agent (HackerRank Orchestrate 24 Hackathon)
+# Multi-Domain Support Triage Agent (HackerRank Orchestrate 24 hr Hackathon)
 
 An automated, terminal-based AI agent that triages and resolves support tickets for **HackerRank**, **Claude**, and **Visa** using a Retrieval-Augmented Generation (RAG) pipeline backed by a hybrid search engine.
 
