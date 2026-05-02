@@ -43,7 +43,7 @@ This approach ensures:
 │   ├── agent.py        # LLM reasoning engine (Groq)
 │   ├── indexer.py      # Hybrid search: FAISS + TF-IDF with RRF
 │   ├── main.py         # Entry point: orchestrates indexing & batch processing
-│   └── README.md       # This file
+│   
 │
 ├── data/
 │   ├── hackerrank/     # HackerRank support articles (.md)
