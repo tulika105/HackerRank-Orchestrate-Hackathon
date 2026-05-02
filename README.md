@@ -227,3 +227,9 @@ The agent will:
 2. Process each ticket sequentially with a short delay between requests.
 3. Save results incrementally to avoid data loss.
 4. Print a progress bar showing completion status.
+```
+---
+## 9. Output
+
+<img width="966" height="753" alt="Screenshot 2026-05-03 002953" src="https://github.com/user-attachments/assets/afb0a9c0-f343-4260-a3aa-b7d7d33cf8a9" />
+
