@@ -1,4 +1,4 @@
-# Multi-Domain Support Triage Agent — HackerRank Orchestrate
+# Multi-Domain Support Triage Agent (HackerRank Orchestrate 24 hr Hackathon)
 
 An automated, terminal-based AI agent that triages and resolves support tickets for **HackerRank**, **Claude**, and **Visa** using a Retrieval-Augmented Generation (RAG) pipeline backed by a hybrid search engine.
 
@@ -43,7 +43,7 @@ This approach ensures:
 │   ├── agent.py        # LLM reasoning engine (Groq)
 │   ├── indexer.py      # Hybrid search: FAISS + TF-IDF with RRF
 │   ├── main.py         # Entry point: orchestrates indexing & batch processing
-│   └── README.md       # This file
+│   
 │
 ├── data/
 │   ├── hackerrank/     # HackerRank support articles (.md)
@@ -227,3 +227,9 @@ The agent will:
 2. Process each ticket sequentially with a short delay between requests.
 3. Save results incrementally to avoid data loss.
 4. Print a progress bar showing completion status.
+```
+---
+## 9. Output
+
+<img width="966" height="753" alt="Screenshot 2026-05-03 002953" src="https://github.com/user-attachments/assets/afb0a9c0-f343-4260-a3aa-b7d7d33cf8a9" />
+
