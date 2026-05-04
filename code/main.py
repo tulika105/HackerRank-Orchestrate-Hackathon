@@ -7,6 +7,32 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+def run_single_issue(issue: str):
+    # Initialize Indexer and Agent
+    data_dir = "data"
+    if not os.path.exists(data_dir):
+        data_dir = "../data"
+    
+    indexer = HybridIndexer()
+    indexer.load_data(data_dir)
+    indexer.fit()
+    
+    agent = SupportAgent()
+    
+    # Retrieval
+    context = indexer.hybrid_search(issue, top_k=3)
+    
+    # Agent Processing
+    res = agent.process_ticket(issue, "", "None", context)
+    
+    # Output 5 JSON fields
+    import json
+    print("\n" + "="*30)
+    print("SINGLE TICKET OUTPUT")
+    print("="*30)
+    print(json.dumps(res, indent=4))
+    print("="*30)
+
 def main(input_file="support_tickets/support_tickets.csv", output_file="support_tickets/output.csv"):
     # 1. Initialize Indexer and Agent
     print("Initializing indexing...")
@@ -25,8 +51,10 @@ def main(input_file="support_tickets/support_tickets.csv", output_file="support_
     # 2. Load Tickets
     if not os.path.exists(input_file):
         # Try relative to repo root if current is different
-        input_file = os.path.join("..", input_file)
-        output_file = os.path.join("..", output_file)
+        alt_input = os.path.join("..", input_file)
+        if os.path.exists(alt_input):
+            input_file = alt_input
+            output_file = os.path.join("..", output_file)
     
     if not os.path.exists(input_file):
         print(f"Error: {input_file} not found.")
@@ -87,9 +115,21 @@ def main(input_file="support_tickets/support_tickets.csv", output_file="support_
 
 if __name__ == "__main__":
     import sys
-    if len(sys.argv) > 2:
-        main(sys.argv[1], sys.argv[2])
-    elif len(sys.argv) > 1:
-        main(sys.argv[1])
-    else:
+    args = sys.argv[1:]
+    
+    if len(args) == 0:
+        # Default CSV mode
         main()
+    elif len(args) == 1:
+        arg = args[0]
+        if arg.lower().endswith('.csv'):
+            main(input_file=arg)
+        else:
+            run_single_issue(arg)
+    elif len(args) == 2:
+        main(input_file=args[0], output_file=args[1])
+    else:
+        print("Usage:")
+        print("  Single issue: python code/main.py \"issue description\"")
+        print("  CSV processing: python code/main.py input.csv output.csv")
+        print("  Default: python code/main.py")
